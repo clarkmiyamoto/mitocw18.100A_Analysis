@@ -1,0 +1,90 @@
+%%% Document Formatting
+\documentclass[12pt,fleqn]{article}
+\usepackage[a4paper,
+            bindingoffset=0.2in,
+            left=0.75in,
+            right=0.75in,
+            top=0.8in,
+            bottom=0.8in,
+            footskip=.25in]{geometry}
+\setlength\parindent{0pt} % No indent
+
+%%% Imports
+% Mathematics
+\usepackage{amsmath} % Math formatting
+\numberwithin{equation}{section} % Number equation per section
+\DeclareMathOperator{\Tr}{Tr}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{proof}{Proof}
+
+\usepackage{amsfonts} % Math fonts
+\usepackage{amssymb} % Math symbols
+\usepackage{mathtools} % Math etc.
+\usepackage{slashed} % Dirac slash notation
+\usepackage{cancel} % Cancels to zero
+\usepackage{empheq}
+
+% Visualization
+\usepackage{graphicx} % for including images
+\graphicspath{ {} } % Path to graphics folder
+
+%%% Formating
+\usepackage{hyperref} % Hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\urlstyle{same}
+
+\usepackage{mdframed} % Framed Enviroments
+\newmdenv[ 
+  topline=false,
+  bottomline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep
+]{sidework} %% Side-work
+
+\usepackage{lipsum} % Lorem Ipsum example text
+
+%%%%% ------------------ %%%%%
+%%% Title
+\title{Homework 2}
+\author{cm6627@nyu.edu}
+\date{}
+
+%%% Contents of Document
+\begin{document}
+\maketitle
+
+\section*{Problem 1}
+\textbf{Assumptions:} Let $F$ be an ordered field, and $x,y,z \in F$. Assume $x < 0$ and $y < z$.
+
+\textbf{WTS:}
+$xy > xz$
+\\
+
+\textbf{Proof:} If $x < 0$, we can rewrite $x = - \tilde x$ s.t. $\tilde x > 0$. So starting w/ the inequality between $y < z$:
+\begin{align}
+	y & < z\\
+	\tilde x y & < \tilde x 	z\\
+	- \tilde x y & > - \tilde x z\\
+	x y & > x z
+\end{align}
+QED.
+
+\section*{Problem 2}
+\textbf{Assumptions:} Let $S$ be an ordered set. Let $A \subset S$ s.t. $A$ is nonempty and finite.
+
+\textbf{WTF:} $A$ is bounded.
+
+
+
+
+
+\end{document}
