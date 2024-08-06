@@ -82,8 +82,77 @@ QED.
 \textbf{Assumptions:} Let $S$ be an ordered set. Let $A \subset S$ s.t. $A$ is nonempty and finite.
 
 \textbf{WTF:} $A$ is bounded.
+\\
+
+\textbf{Proof:} If $A$ is finite, this means $|A| = C$ s.t. $C \in \mathbb N$. Recalling this notation, this implies there exists a bijection $f: A \to \{1,2,...,C\}$. What will follow is a proof via induction, where our inductive steps occurs on $C$.\\
+
+\underline{(Base Case)} Let $C=1$.
+
+This means the bijection $f: A \to \{1\}$. A bijection is an invertible function, so this implies there is only 1 element in $A$. 
+
+ 
+ 
+\section*{Problem 3 [1.1.5]}
+\textbf{Assumptions:} Let $S$ be an ordered set. Let $A \subset S$ and suppose $b$ is an upper bound for $A$. Suppose $b \in A$.
+
+\textbf{WTS:} $b = \sup A$\\
+
+\textbf{Proof:} If $b$ is an upper bound for $A$, then $\forall a \in A, a \leq b$. But if $b \in A$, this mean $b$ is the largest element in $A$ (as there can be only 1 largest element in an ordered set). All other element in $S$ fail the definition of upper bound. Hence $b = \sup A$.\\
+
+QED
+
+\begin{sidework}
+	To show there's only 1 largest element in an ordered set. Assume there are $b_1, b_2, ..., b_n$ largest numbers, we'll show $b_1 = b_2 = ... = b_n$\\
+	
+	\underline{(Base case) $n=2$:}
+	
+	Assuming there are two largest numbers $b_1, b_2$. However this means $b_1 \geq b_2$ and $b_2 \geq b_1$ $\implies b_1 = b_2$. So the two largest numbers are the same.
+	\\
+	
+	\underline{(Inductive step) $n:= m$:}
+	Assume $b_1 = b_2 = ... = b_n := b$. Now show $b_1 = b_2 = ... = b_n = b_{n+1}$.\\
+	Since $b$ and $b_{n+1}$ both claim they're the largest number, it once again follows $b \geq b_{n+1}$ and $b_{n+1} \geq b$.  \\
+	\\
+	
+	Hence there can only be 1 largest element in an ordered set. QED.
+\end{sidework}
+
+\section*{Problem 4 [1.1.6]}
+\textbf{Assumptions:} Let $S$ be an ordered set. Let $A \subset S$ be nonempty and bounded above. Suppose $\exists \sup A \notin A$ \\
+\textbf{WTS:} $A$ contains a countably infinite subset. Restated: $\exists B \subset A$ s.t. $|B| = |\mathbb N|$
 
 
+
+
+\section*{Problem 5 [1.2.7]} Prove for $x,y \in \mathbb R_{>0}$.
+\begin{align}
+	\sqrt {xy} \leq \dfrac{x + y}{2	}
+\end{align}
+\textbf{Proof:}
+Consider the quantity $(x-y)^2$
+\begin{align}
+ 	0 & \leq (x - y)^2   & \forall r \in \mathbb R, r^2 \geq 0\\
+ 	 &  = x^2 - 2 xy + y^2 & \text{Expanded}\\
+   4 xy  & \leq x^2 + 2 xy + y^2 & \text{if } r > 0 \text{ and }  
+\end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 

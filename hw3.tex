@@ -1,0 +1,276 @@
+%%% Document Formatting
+\documentclass[12pt,fleqn]{article}
+\usepackage[a4paper,
+            bindingoffset=0.2in,
+            left=0.75in,
+            right=0.75in,
+            top=0.8in,
+            bottom=0.8in,
+            footskip=.25in]{geometry}
+\setlength\parindent{10pt} % No indent
+
+%%% Imports
+% Mathematics
+\usepackage{amsmath} % Math formatting
+\numberwithin{equation}{section} % Number equation per section
+\DeclareMathOperator{\Tr}{Tr}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{proof}{Proof}
+
+\usepackage{amsfonts} % Math fonts
+\usepackage{amssymb} % Math symbols
+\usepackage{mathtools} % Math etc.
+\usepackage{slashed} % Dirac slash notation
+\usepackage{cancel} % Cancels to zero
+\usepackage{empheq}
+
+% Visualization
+\usepackage{graphicx} % for including images
+\graphicspath{ {} } % Path to graphics folder
+
+%%% Formating
+\usepackage{hyperref} % Hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\urlstyle{same}
+
+\usepackage{mdframed} % Framed Enviroments
+\newmdenv[ 
+  topline=false,
+  bottomline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep
+]{sidework} %% Side-work
+
+\usepackage{lipsum} % Lorem Ipsum example text
+
+%%%%% ------------------ %%%%%
+%%% Title
+\title{Homework 3}
+\author{cm6627@nyu.edu}
+\date{}
+
+%%% Contents of Document
+\begin{document}
+\maketitle
+\section*{Problem 1}
+Let $x,y \in \mathbb R$ s.t. $x < y$. Prove  $\exists i \in \mathbb R \backslash \mathbb Q$ s.t. $x < i < y$.
+
+\subsection*{Solution} I want to show $\mathbb R \backslash \mathbb Q$ (set of irrationals) is uncountably infinite. Which would imply there exists $i \in (x,y)$.
+
+\begin{theorem}
+	\label{thm:p1 subset inequality}
+	Let $A,B$ be sets. If $A \subset B$, then $|A| \leq |B|$.
+\end{theorem}
+\begin{theorem}
+	\label{thm:p1 subset uncountability}
+Let $A,B$ be sets. If $A$ is an uncountably infinite and $A \subset B$, then $B$ is uncountably infinite.
+\\
+\textbf{Proof:} (By contradiction) Assume $B$ is NOT countably infinite. In other words, $|B| \leq |\mathbb N|$. Recall the premise was $A \subset B$, so by Theorem \ref{thm:p1 subset inequality} $|A| \leq |B| \leq |\mathbb N|$; hence $|A| \leq \mathbb N$. But we assumed $|A|$ is uncountably infinite-- unpacking that definition $|A| > |\mathbb N|$. And thus we've found our contradiction! Therefore $B$ is uncountably infinite. QED.
+\end{theorem}
+
+\begin{theorem}
+	\label{thm:p1 exists subset uncountable}
+	Let $B$ be a uncountably infinite, then $\exists A \subset B$ which is also uncountably infinite.
+	\textbf{Proof:} Consider $x \in B$, then let $A:= B\backslash  \{x\} \subset B$. I now want to show: if $B$ is uncountable, then $B\backslash \{x\}$ is uncountable. Restating the contrapositive: if $B\backslash\{x\}$ is countable, then $B$ is countable. Let $C:= B\backslash \{x\} \implies B  = C \cup \{x\}$. Once again restating what I want to show: if $C$ is countable, then $C \cup \{x\}$ is countable.
+	
+	Well, if $C$ is countable, then there exists a bijection $f: C \to \mathbb N$. Consider a function $g: C \cup \{x\} \to \mathbb N$, such that
+	\begin{align}
+		g(a) = \begin{cases}
+			1 & \text{if } a=x\\
+			1 + f(a) & \text{if } a \in C
+		\end{cases}
+	\end{align}
+	I will now show $g$ is a bijection, thus showing $C \cup \{x\}$ is countable.
+	\begin{enumerate}
+		\item Onto [If $g(x_1) = g(x_2)$, then $x_1 = x_2$]: 
+		\begin{itemize}
+			\item Case $g(x_1) = 1$: Consider $g(x_1) = g(x_2) = 1 \implies x_1 = x_2 = x$. 
+			\item Case $g(x_1) > 1$: $g(x_1) = g(x_2) \implies 1 + f(x_1) = 1 + f(x_2) \implies f(x_1) = f(x_2)$. Since $f$ is bijective, $\implies x_1 = x_2$.
+		\end{itemize}
+		Hence $g$ is injective.
+		\item Surjective $[g(C \cup \{x\}) = \mathbb N]$:
+
+		Recall, $f(a)$ is bijective, hence f(C) = \{1,2,3,...\}. So $1 + f(C) = \{2,3,4,...\}$. By definition of $g$, $g(C \cup \{x\}) = \{1,2,3,4,... \}$. Hence $g$ is surjective.	 
+	\end{enumerate}
+	Therefore $g$ is bijective, which is our restated version of what we wanted to show. QED.
+\end{theorem}
+
+Now for the actual proof-- I'll do this by contradiction. Assume $\forall i \in \mathbb R \backslash \mathbb Q$, $ i \notin (x,y)$, meaning $i \leq x$ OR $i \geq y$. 
+
+
+
+
+
+
+
+\section*{Problem 2}
+\textbf{Premise:} Let $E \subset (0,1)$ be the set of all real numbers with decimal representation using only the digits $1$ and $2$.
+\begin{align}
+	E:= \{x \in (0,1) : \forall j \in \mathbb N, \exists d_{-j} \in \{1,2\} ~ s.t. ~ x = 0.d_{-1}d_{-2}...\}
+\end{align}
+Prove that $|E| = |\mathcal P(\mathbb N)|$.\\
+\textbf{Proof:} Consider the function $f: E \to \mathcal P(\mathbb N)$
+\begin{align}
+	f(x) := \{j \in \mathbb N : d_{-j} = 2\}, ~ s.t. ~ x=0.d_{-1}d_{-2}...
+\end{align}
+To show $|E| = |\mathcal P(\mathbb N)|$, it suffices to show $f$ is a bijection. This requires
+\begin{enumerate}
+	\item Show Injective: If $\forall x_1,x_2 \in E, ~ f(x_1) = f(x_2) \implies x_1 = x_2$
+	\item Show Surjective: If $\forall y \in \mathcal P(\mathbb N), \exists x  \in E$ s.t. $y = f(x)$.
+\end{enumerate}
+
+
+
+
+
+\section*{Problem 3a}
+Let $A$ and $B$ be disjoint (i.e. $A \cap B = \phi $), and countably infinite ($|A|=|B| = |\mathbb N|$). Prove $A\cup B$ is countably infinite.
+\subsection*{Solution}
+
+Notice: if $|A| = |\mathbb N|$, then $\exists f: A \to \mathbb N$ s.t. $f$ is bijection; and if $|B| = |\mathbb N|$, then $\exists g: B \to \mathbb N$ s.t. $g$ is bijection. 
+
+Now, I'll construct a bijection $h: A\cup B \to \mathbb N$. Proving $A\cup B$ is countably infinite. Let $h$ be
+\begin{align}
+	h(x) := \begin{cases}
+		2f(x), &  \text{if } x \in A\\
+		2g(x) - 1, & \text{if } x \in B
+	\end{cases}
+\end{align}
+Now I must prove $h$ is a bijection.
+\begin{enumerate}
+	\item Injective: Consider $h(x_1) = h(x_2)$... The equality will either become $2f(x_1)=  2f(x_2)$ or $2g(x_1) -1 = 2g(x_2) - 1$. Since $f,g$ are bijections, do algebra to show $x_1 = x_2$. Note, it is NOT possible to have $2f(x_1) = 2g(x_2) - 1$, since $A\cap B = \phi$, this means there's no overlap, hence if $x \notin A$ and $x \in A \cup B$, then $x \in B$-- and vice versa.
+	\item Surjective:  $h(A \cup B) = \{2g(b_1) - 1, 2f(a_1), 2g(b_2) - 2, 2f(a_2),... \} = \{1,2,3,4,...\}= \mathbb N$. 
+\end{enumerate}
+Hence $A \cup B$ is countably infinite. QED.
+
+\section*{Problem 3b}
+Show the set of irrational is uncountably infinite.
+\subsection*{Solution}
+This easily follows from work done in Problem 1.
+\\
+
+Consider $\mathbb R = \mathbb R \backslash \mathbb Q \cup \mathbb Q$. So $\mathbb R$ can be broken down into two subsets (without overlap), $\mathbb R \backslash \mathbb Q$ and $\mathbb Q$. Since $\mathbb R$ is uncountable, by Theorem \ref{thm:p1 exists subset uncountable}, either $\mathbb R \backslash \mathbb Q$ or $\mathbb Q$ must be uncountably infinite. But $\mathbb Q$ is countably infinite, hence $\mathbb R \backslash \mathbb Q$ is uncountably infinite.
+	
+	One might be concerned that it is actually a subset of $\mathbb R \backslash \mathbb Q$ or $\mathbb Q$ which is uncountable, which causes $\mathbb R$ to become uncountable. But by Theorem \ref{thm:p1 subset uncountability}, if a subset is uncountable, then the superset (of said subset) is also uncountable. 
+	
+Hence the set of irrationals is uncountably infinite. QED.
+
+\section*{Problem 4}
+Suppose $S \subset \mathbb R$ is nonempty and bounded above. Then $x = \sup S$ i.f.f. 
+\begin{enumerate}
+	\item $x$ is an upper bound for $S$. ($\exists x \in \mathbb R$ s.t. $ \forall s \in S, ~ s\leq x$)
+	\item $\forall \epsilon > 0. ~  \exists y \in S$ s.t. $x - \epsilon < y \leq x$. In otherwords,  $\exists y \in S,$ s.t. $y \in (x-\epsilon , x]$.
+\end{enumerate}
+
+\subsection*{Solution $(\implies)$}
+\begin{enumerate}
+	\item By definition of supremum, $x$ is the least upper bound for $S$. Meaning it is still an upper bound for $S$.
+	\item Similar to proof of $\mathbb Q$ is dense in $\mathbb R$. Unsure how to proceed.
+\end{enumerate}
+\subsection*{Solution $(\impliedby)$}
+WTS: If $x$ is an upper bound for $S$ and $\forall \epsilon > 0,\exists y \in S$ s.t. $y \in (x-\epsilon, x]$, then $x = \sup S$. \\
+
+
+
+
+
+
+\section*{Problem 5}
+We say a set $U \subset \mathbb R$ is open if $\forall x \in U$ $\exists \epsilon >0$ s.t.
+\begin{align}
+	(x - \epsilon, x + \epsilon) \subset U
+\end{align}
+\subsection*{Part a)}
+Let $a,b \in \mathbb R$ with $a<b$. Prove $(a,b)$ is open.\\
+
+\textbf{Proof:} Well, I can take $\epsilon = \min \{|x-a|, |x-b| \}$, note $\epsilon > 0$!. So $\forall x \in (a,b)$,  $(x-\epsilon , x+\epsilon) \subset (a,b)$. I can take $\epsilon = |x-a|$ or $|x-b|$ for the other intervals.
+\subsection*{Part b)}
+Let $\Lambda$ be a set (not necessarily a subset of $\mathbb R$), and $\forall \lambda \in \Lambda$, let $U_\lambda \subset \mathbb R$. WTS: If $\forall \lambda \in \Lambda$, $U_\lambda$ is open, then the set $\bigcup_{\lambda \in \Lambda} U_\lambda$ is open.\\
+
+\textbf{Proof:}
+
+
+\section*{Problem 6}
+Show \begin{align}
+	\lim_{n\to \infty} \frac{1}{20n^2 + 20n + 2020} = 0
+\end{align}
+In other words: Let $\epsilon > 0$. Show $\exists M \in \mathbb N$ s.t. $\forall n \geq M$ 
+\begin{align}
+	\left | \frac{1}{20n^2 + 20n + 2020} - 0 \right| < \epsilon
+\end{align}
+\subsection*{Solution}
+\begin{sidework}
+	Before starting these type of problems, always attempt to find an easier inequality
+	\begin{align}
+		\left | \frac{1}{20n^2 + 20n + 2020} - 0 \right| & < \left | \frac{1}{20n^2 + 20n} \right | \\
+		& < \left | \frac{1}{n^2 + n} \right |\\
+		& < \left | \frac{1}{n} \right |		
+	\end{align}
+	Hence if I can show $|1/n| < \epsilon$, then I've really shown $|1/(20n^2 + 20n + 2020)| < |1 / n| < \epsilon$
+\end{sidework}
+Since $1/\epsilon \in \mathbb R_{>0}$, by A.P. $\exists M \in \mathbb N$ s.t. $1/\epsilon < M$. So for all $n \geq M > 1/\epsilon$. Restated carefully 
+\begin{align}
+	n  > 1/\epsilon \implies \epsilon  > 1/n \implies \epsilon  > |1/n|
+\end{align}
+But notice
+\begin{align}
+	\left | \frac{1}{n} \right| & > \left | \frac{1}{n^2 + n} \right | \\
+	& > \left | \frac{1}{20 n^2 + 20n} \right | \\
+	& > \left | \frac{1}{20n^2 + 20n + 2020} \right | 
+\end{align}
+Putting it all together. We have: given $\epsilon > 0$, if $\exists M \in \mathbb N$ s.t. $\forall n \geq M$
+\begin{align}
+	\epsilon > \left | \frac{1}{n} \right| > \left | \frac{1}{20n^2 + 20n + 2020} - 0\right | \implies \lim_{n\to \infty} \frac{1}{20n^2 + 20n + 2020} = 0
+\end{align}
+QED
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section*{Appendix}
+\subsection*{Archimedean Property}
+The Archimedean Property states: $\forall x \in \mathbb R$, $\exists n \in \mathbb N$ such that $n > x$.
+
+\subsubsection*{Example Problem}
+If $\forall \epsilon > 0$, then $\exists N \in \mathbb N$ such that $1/n < \epsilon$ $\forall n \geq N$.\\
+\textbf{Solution:}
+\begin{sidework}
+	Notice: $n \geq N \implies 1/N \geq 1/n \implies 1/n \leq 1/N$\\
+	I want to show $1/N < \epsilon$, because this impllies $1/n  < \epsilon$.\\
+	It'll be easier to show $1/\epsilon < N$.
+\end{sidework}
+Let $\epsilon > 0$. Note the following is also true $\frac{1}{\epsilon} > 0$. So by A.P. $\exists N \in \mathbb N$ s.t. $N > \frac{1}{\epsilon}$
+\begin{sidework}
+	Looking at our original statment for the AP. $n:= N$ and $x:= 1/\epsilon$.
+\end{sidework}
+
+
+
+
+
+
+
+
+
+
+\end{document}
